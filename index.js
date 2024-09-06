@@ -63,7 +63,7 @@ function createFormView(dispatch, model) {
   ]);
 }
 
-// Funktion zum Erstellen einer einzelnen Karte (entweder im Bearbeitungs- oder Anzeigemodus)
+// Funktion zum Erstellen einer einzelnen Karte 
 function createCardView(dispatch, card, index) {
   return div({ className: "bg-yellow-100 shadow-lg rounded p-4 max-w-xs relative" }, [
     // Wenn die Karte im Bearbeitungsmodus ist, zeige das Bearbeitungsformular, andernfalls die normale Anzeige
@@ -71,7 +71,7 @@ function createCardView(dispatch, card, index) {
   ]);
 }
 
-// Ansicht für die normale Anzeige einer Karte (wenn nicht im Bearbeitungsmodus)
+// Ansicht für die normale Anzeige einer Karte 
 function createDisplayView(dispatch, card, index) {
   return div({}, [
     // Frage der Karte
@@ -168,23 +168,23 @@ const initModel = {
   cards: [], // Leeres Array für die Flashcards
 };
 
-// Verbindet die App mit dem HTML-Element, in dem sie gerendert wird
-const rootNode = document.getElementById("app");
-app(initModel, update, view, rootNode);
-
-// Hauptfunktion der App, um das Rendering und die Logik zu verbinden
+// ⚠️ Impure code below (not avoidable but controllable)
 function app(initModel, update, view, node) {
-  let model = initModel; // Aktueller Zustand des Modells
-  let currentView = view(dispatch, model); // Erzeugt die anfängliche Ansicht basierend auf dem Modell
-  let rootNode = createElement(currentView); // Erstellt das DOM-Element für die Ansicht
-  node.appendChild(rootNode); // Fügt die Ansicht dem DOM hinzu
-
-  // Dispatch-Funktion, die auf Nachrichten reagiert und den Zustand aktualisiert
+  let model = initModel;
+  let currentView = view(dispatch, model);
+  let rootNode = createElement(currentView);
+  node.appendChild(rootNode);
   function dispatch(msg) {
-    model = update(msg, model); // Aktualisiert das Modell basierend auf der Nachricht
-    const updatedView = view(dispatch, model); // Erzeugt die aktualisierte Ansicht
-    const patches = diff(currentView, updatedView); // Vergleich der alten und neuen Ansicht (vDOM-Diffing)
-    rootNode = patch(rootNode, patches); // Aktualisiert das reale DOM basierend auf den Änderungen
-    currentView = updatedView; // Setzt die aktuelle Ansicht auf die neue Ansicht
+    model = update(msg, model);
+    const updatedView = view(dispatch, model);
+    const patches = diff(currentView, updatedView);
+    rootNode = patch(rootNode, patches);
+    currentView = updatedView;
   }
 }
+
+// The root node of the app (the div with id="app" in index.html)
+const rootNode = document.getElementById("app");
+
+// Start the app
+app(initModel, update, view, rootNode);
