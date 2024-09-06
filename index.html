@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional Quiz Cards</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/hyperscript-helpers"></script>
+    <script defer src="https://unpkg.com/virtual-dom"></script>
+    <script defer src="index.js"></script> 
+</head>
+<body class="bg-gray-100 p-6 min-h-screen flex flex-col justify-between">
+    <div class="container mx-auto flex-grow">
+        <!-- Title Section with background color -->
+        <header class="bg-blue-600 p-6 text-white mb-6">
+            <h1 class="text-4xl font-bold text-left">Modul323 - Quizkarten</h1>
+        </header>
+
+        <div class="mb-4 text-left">
+            <h2 class="text-xl font-semibold">Create a new Quiz Card</h2>
+            <button id="toggle-form-btn" class="bg-blue-600 text-white px-6 py-3 rounded text-lg mt-2">+ Add Flashcard</button>
+        </div>
+
+        <!-- Quiz card creation form (initially hidden) -->
+        <div id="quiz-form" class="hidden">
+            <div class="bg-yellow-200 shadow-lg rounded p-4 max-w-xs">
+                <div class="mb-4">
+                    <label class="font-bold text-lg">Question:</label>
+                    <input id="question-input" type="text" placeholder="Enter Question" class="border p-3 w-full mt-2 rounded">
+                </div>
+                <div class="mb-4">
+                    <label class="font-bold text-lg">Answer:</label>
+                    <input id="answer-input" type="text" placeholder="Enter Answer" class="border p-3 w-full mt-2 rounded">
+                </div>
+                <div class="text-center mt-4">
+                    <button id="add-card-btn" class="bg-blue-600 text-white px-6 py-3 rounded text-lg">Save Card</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz card list -->
+        <h2 class="text-3xl font-extrabold mb-4 text-center">Your Quiz Cards</h2>
+        <hr class="border-black my-4">
+        <div id="app"></div> 
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-center bg-gray-800 py-4">
+        <p class="text-white">Quiz Cards Application &copy; 2024</p>
+    </footer>
+</body>
+</html>
